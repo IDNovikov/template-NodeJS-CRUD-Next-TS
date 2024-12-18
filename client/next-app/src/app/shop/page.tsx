@@ -1,38 +1,50 @@
 import Link from "next/link";
 import { IProduct } from "../types/types";
-import MainContainer from "../ui/MainContainer";
+// import MainContainer from "../../ui/MainContainer";
+import styles from "../styles/shop.module.css";
 
 async function getData() {
   const res = await fetch("http://localhost:5000/api/products", {
-    cache: "force-cache",
+    cache: "no-cache",
   });
   return res.json();
 }
-const page: React.FC = async () => {
+
+export default async function ShopPage() {
   const data = await getData();
-  console.log(data.rows);
+
   return (
-    <MainContainer>
-      {data.rows.map((item: IProduct) => (
-        <div>
-          <h1>{item.name}</h1>
-          <div>Basic price:{item.price}</div>
-          <div>Discount:{item.discount}</div>
-          <div>Total price:{item.price - item.discount}</div>
-          <div>About:{item.description}</div>
-          <div>Article:{item.article}</div>
-          {item.img && (
+    <>
+      <h1 className={styles.pageTitle}>Our Products</h1>
+      <div className={styles.productGrid}>
+        {data.rows.map((item: IProduct) => (
+          <div key={item.id} className={styles.productCard}>
+            <h2 className={styles.productTitle}>{item.name}</h2>
             <img
-              src={`http://localhost:5000/${item.img.replace(
+              className={styles.productImage}
+              src={`http://localhost:5000/${item.img?.replace(
                 /[\"\[\]\\\\s]/g,
                 ""
               )}`}
+              alt={item.name}
             />
-          )}
-        </div>
-      ))}
-    </MainContainer>
+            <div className={styles.productInfo}>
+              <p>
+                Basic price: <b>${item.price}</b>
+              </p>
+              <p>
+                Discount: <b>${item.discount}</b>
+              </p>
+              <p>
+                Total price: <b>${item.price - item.discount}</b>
+              </p>
+            </div>
+            <Link href={`/shop/${item.id}`} className={styles.productLink}>
+              View Details
+            </Link>
+          </div>
+        ))}
+      </div>
+    </>
   );
-};
-
-export default page;
+}
