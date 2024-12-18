@@ -1,5 +1,5 @@
 import { IProduct } from "../../types/types";
-// import MainContainer from "../../../ui/MainContainer";
+import MainContainer from "../../ui/MainContainer";
 import styles from "../../../styles/Product.module.css";
 
 interface ProductPageProps {
@@ -17,7 +17,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const product: IProduct = await getProduct(params.id);
 
   return (
-    <>
+    <MainContainer>
       <div className={styles.productContainer}>
         <h1 className={styles.productTitle}>{product.name}</h1>
         {product.img && (
@@ -43,6 +43,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <p>Description: {product.description}</p>
         </div>
       </div>
-    </>
+    </MainContainer>
   );
 }

@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.navbar {
+  background: orange;
+  padding: 15px;
+}
+.inner {
+  margin: 100px auto;
+}
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  margin: 10px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  padding: 30px;
+}
+.search {
+  all: unset;
+  margin: 15px auto;
+  width: calc(100% - 40px);
+  max-width: 500px;
+  height: 42px;
+  gap: 12px;
+  padding: 0px 20px;
+  border-radius: 8px;
+  border: 2px solid #e0dddd;
+  opacity: 0px;
+  background-color: white;
+}
+.search::placeholder {
+  all: unset;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: left;
+  color: #636363;
+  width: calc(100% - 40px);
+}
+.search:focus {
+  border: 2px solid #fff500;
+}
+
+.button {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  opacity: 0px;
+  background: #fff500;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: "IBM Plex Sans";
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  border: 2px solid black;
+  user-select: none;
+  height: 42px;
+  width: 100%;
+  font-size: 20px;
+  color: " Black";
+}
+
+.button:hover {
+  background-color: #e0d900;
+}
+
+.button:active {
+  border: 2px solid #e7342b;
+}

@@ -81,10 +81,8 @@ class ProductController {
   }
 
   async delete(req, res, next) {
-    console.log(req.params.id);
     try {
       let productID = req.params.id;
-      console.log("work" + productID);
       const product = await Product.findOne({ where: { id: productID } });
       let images = JSON.parse(product.img);
       for (let item of images) {
@@ -109,7 +107,7 @@ class ProductController {
   async update(req, res, next) {
     try {
       const { id } = req.params; // Получаем ID продукта из параметров запроса
-      const { name, description, article } = req.body.name || {};
+      const { name, description, article } = req.body || {};
       const price = req.body.price ? Number(req.body.price) : undefined;
       const discount = req.body.discount
         ? Number(req.body.discount)
@@ -118,7 +116,7 @@ class ProductController {
 
       const product = await Product.findByPk(id);
       if (!product) {
-        return next(ApiError.badRequest("Product not found"));
+        return next(ApiError.badRequest(id));
       }
 
       let updatedImages = JSON.parse(product.img || "[]");

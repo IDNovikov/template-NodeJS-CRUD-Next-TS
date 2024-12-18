@@ -1,36 +1,33 @@
-import CustomLink from "./CustomLink";
 import Head from "next/head";
+import Link from "next/link";
 
 type Props = {
   children?: React.ReactNode;
   keywords?: string;
 };
 
-const MainContainer: React.FC<Props> = ({
-  children,
-  keywords,
-}): React.ReactNode => {
+const MainContainer: React.FC<Props> = ({ children, keywords }) => {
   return (
     <>
       <Head>
-        <meta
-          keywords={`shop with admin example + ${keywords && keywords}`}
-        ></meta>
+        <meta name="keywords" content={`shop, admin, testCase, ${keywords}`} />
         <title>Главная страница</title>
       </Head>
-      <div className="navbar">
-        <CustomLink href={"/"} text="Home" />
-        <CustomLink href={"/shop"} text="Magazine" />
-      </div>
-      <div>{children}</div>
-      <style jsx>
-        {`
-          .navbar {
-            background: orange;
-            padding: 15px;
-          }
-        `}
-      </style>
+      <nav className="navbar">
+        <Link className="link" href="/">
+          Home
+        </Link>
+        <Link className="link" href="/shop">
+          Magazine
+        </Link>
+        <Link className="link" href="/auth">
+          Auth
+        </Link>
+        <Link className="link" href="/admin">
+          Admin
+        </Link>
+      </nav>
+      <main className="inner">{children}</main>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { IProduct } from "../types/types";
-// import MainContainer from "../../ui/MainContainer";
+import MainContainer from "../ui/MainContainer";
 import styles from "../styles/shop.module.css";
 
 async function getData() {
@@ -14,7 +14,7 @@ export default async function ShopPage() {
   const data = await getData();
 
   return (
-    <>
+    <MainContainer>
       <h1 className={styles.pageTitle}>Our Products</h1>
       <div className={styles.productGrid}>
         {data.rows.map((item: IProduct) => (
@@ -45,6 +45,6 @@ export default async function ShopPage() {
           </div>
         ))}
       </div>
-    </>
+    </MainContainer>
   );
 }
